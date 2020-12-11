@@ -1,5 +1,18 @@
 #include <iostream>
 
+struct gridPosition
+{
+    char icon = ' ';
+    bool taken = false;
+}; //gridPosition struct
+
+struct player
+{
+    char name[20] = "playerName";
+    char icon = 0;
+    bool won = false;
+}; //player struct
+
 void printCharArray(char arr[])
 {
     std::cout << arr;
@@ -7,29 +20,29 @@ void printCharArray(char arr[])
 
 void main()
 {
-    char player1Name[20];
-    char player1Icon = 'X';
-    bool player1Won = false;
+    player player1;
+    player1.icon = 'X';
 
-    char player2Name[20];
-    char player2Icon = 'O';
-    bool player2Won = false;
+    player player2;
+    player2.icon = 'O';
+
+    bool cat = false;
 
     std::cout << "Player 1, what is your name?" << std::endl;
-    std::cin >> player1Name;
+    std::cin >> player1.name;
     system("cls");
 
     std::cout << "Player 2, what is your name?" << std::endl;
-    std::cin >> player2Name;
+    std::cin >> player2.name;
     system("cls");
 
-    std::cout << player1Name << std::endl;
-    std::cout << player2Name << std::endl;
+    std::cout << player1.name << std::endl;
+    std::cout << player2.name << std::endl;
 
     system("pause");
     system("cls");
 
-    char grid[3][3] = { {'0','0','0'}, {'0','0','0'}, {'0','0','0'} };
+    gridPosition grid[3][3];
 
     do
     {
@@ -40,11 +53,13 @@ void main()
             char position = ' ';
             do
             {
-                std::cout << player1Name << " choose a position (Press a key on the numpad)" << std::endl;
+                std::cout << player1.name << " choose a position (Press a key on the numpad)" << std::endl;
 
-                std::cout << grid[0][0] << "   " << grid[1][0] << "   " << grid[2][0] << std::endl << std::endl;
-                std::cout << grid[0][1] << "   " << grid[1][1] << "   " << grid[2][1] << std::endl << std::endl;
-                std::cout << grid[0][2] << "   " << grid[1][2] << "   " << grid[2][2] << std::endl;
+                std::cout << grid[0][0].icon << " | " << grid[1][0].icon << " | " << grid[2][0].icon << std::endl;
+                std::cout << "-   -   -" << std::endl;
+                std::cout << grid[0][1].icon << " | " << grid[1][1].icon << " | " << grid[2][1].icon << std::endl;
+                std::cout << "-   -   -" << std::endl;
+                std::cout << grid[0][2].icon << " | " << grid[1][2].icon << " | " << grid[2][2].icon << std::endl;
 
                 std::cin >> position;
             } while (position != '7' && position != '8' && position != '9' &&
@@ -54,74 +69,83 @@ void main()
             switch (position)
             {
             case '9':
-                if (grid[2][0] != player1Icon && grid[2][0] != player2Icon)
+                if (grid[2][0].taken == false)
                 {
-                    grid[2][0] = player1Icon;
+                    grid[2][0].icon = player1.icon;
                     placedIcon = true;
+                    grid[2][0].taken = true;
                 }
                 break;
 
             case '8':
-                if (grid[1][0] != player1Icon && grid[1][0] != player2Icon)
+                if (grid[1][0].taken == false)
                 {
-                    grid[1][0] = player1Icon;
+                    grid[1][0].icon = player1.icon;
                     placedIcon = true;
+                    grid[1][0].taken = true;
                 }
                 break;
 
             case '7':
-                if (grid[0][0] != player1Icon && grid[0][0] != player2Icon)
+                if (grid[0][0].taken == false)
                 {
-                    grid[0][0] = player1Icon;
+                    grid[0][0].icon = player1.icon;
                     placedIcon = true;
+                    grid[0][0].taken = true;
                 }
                 break;
 
             case '6':
-                if (grid[2][1] != player1Icon && grid[2][1] != player2Icon)
+                if (grid[2][1].taken == false)
                 {
-                    grid[2][1] = player1Icon;
+                    grid[2][1].icon = player1.icon;
                     placedIcon = true;
+                    grid[2][1].taken = true;
                 }
                 break;
 
             case '5':
-                if (grid[1][1] != player1Icon && grid[1][1] != player2Icon)
+                if (grid[1][1].taken == false)
                 {
-                    grid[1][1] = player1Icon;
+                    grid[1][1].icon = player1.icon;
                     placedIcon = true;
+                    grid[1][1].taken = true;
                 }
                 break;
 
             case '4':
-                if (grid[0][1] != player1Icon && grid[0][1] != player2Icon)
+                if (grid[0][1].taken == false)
                 {
-                    grid[0][1] = player1Icon;
+                    grid[0][1].icon = player1.icon;
                     placedIcon = true;
+                    grid[0][1].taken = true;
                 }
                 break;
 
             case '3':
-                if (grid[2][2] != player1Icon && grid[2][2] != player2Icon)
+                if (grid[2][2].taken == false)
                 {
-                    grid[2][2] = player1Icon;
+                    grid[2][2].icon = player1.icon;
                     placedIcon = true;
+                    grid[2][2].taken = true;
                 }
                 break;
 
             case '2':
-                if (grid[1][2] != player1Icon && grid[1][2] != player2Icon)
+                if (grid[1][2].taken == false)
                 {
-                    grid[1][2] = player1Icon;
+                    grid[1][2].icon = player1.icon;
                     placedIcon = true;
+                    grid[1][2].taken = true;
                 }
                 break;
 
             case '1':
-                if (grid[0][2] != player1Icon && grid[0][2] != player2Icon)
+                if (grid[0][2].taken == false)
                 {
-                    grid[0][2] = player1Icon;
+                    grid[0][2].icon = player1.icon;
                     placedIcon = true;
+                    grid[0][2].taken = true;
                 }
                 break;
             } //position switch
@@ -130,24 +154,28 @@ void main()
         system("cls");
 
         //Player 1 win conditions
-        if (grid[0][0] == player1Icon && grid[0][1] == player1Icon && grid[0][2] == player1Icon) //Vertical Left
-            player1Won = true;
-        else if (grid[1][0] == player1Icon && grid[1][1] == player1Icon && grid[1][2] == player1Icon) //Vertical Center
-            player1Won = true;
-        else if (grid[2][0] == player1Icon && grid[2][1] == player1Icon && grid[2][2] == player1Icon) //Vertical Right
-            player1Won = true;
-        else if (grid[0][0] == player1Icon && grid[1][1] == player1Icon && grid[2][2] == player1Icon) //Diagonal rtl
-            player1Won = true;
-        else if (grid[2][0] == player1Icon && grid[1][1] == player1Icon && grid[0][2] == player1Icon) //Diagonal ltr
-            player1Won = true;
-        else if (grid[2][0] == player1Icon && grid[1][0] == player1Icon && grid[0][0] == player1Icon) //Horizontal Top
-            player1Won = true;
-        else if (grid[2][0] == player1Icon && grid[1][1] == player1Icon && grid[0][1] == player1Icon) //Horizontal Middle
-            player1Won = true;
-        else if (grid[2][0] == player1Icon && grid[1][2] == player1Icon && grid[0][2] == player1Icon) //Horizontal Bottom
-            player1Won = true;
+        if (grid[0][0].icon == player1.icon && grid[0][1].icon == player1.icon && grid[0][2].icon == player1.icon) //Vertical Left
+            player1.won = true;
+        else if (grid[1][0].icon == player1.icon && grid[1][1].icon == player1.icon && grid[1][2].icon == player1.icon) //Vertical Center
+            player1.won = true;
+        else if (grid[2][0].icon == player1.icon && grid[2][1].icon == player1.icon && grid[2][2].icon == player1.icon) //Vertical Right
+            player1.won = true;
+        else if (grid[0][0].icon == player1.icon && grid[1][1].icon == player1.icon && grid[2][2].icon == player1.icon) //Diagonal rtl
+            player1.won = true;
+        else if (grid[2][0].icon == player1.icon && grid[1][1].icon == player1.icon && grid[0][2].icon == player1.icon) //Diagonal ltr
+            player1.won = true;
+        else if (grid[2][0].icon == player1.icon && grid[1][0].icon == player1.icon && grid[0][0].icon == player1.icon) //Horizontal Top
+            player1.won = true;
+        else if (grid[2][0].icon == player1.icon && grid[1][1].icon == player1.icon && grid[0][1].icon == player1.icon) //Horizontal Middle
+            player1.won = true;
+        else if (grid[2][0].icon == player1.icon && grid[1][2].icon == player1.icon && grid[0][2].icon == player1.icon) //Horizontal Bottom
+            player1.won = true;
+        else if (grid[0][0].taken == true && grid[0][1].taken == true && grid[0][2].taken == true &&
+                 grid[1][0].taken == true && grid[1][1].taken == true && grid[1][2].taken == true &&
+                 grid[2][0].taken == true && grid[2][1].taken == true && grid[2][2].taken == true)
+            cat = true;
 
-        if (!player1Won)
+        if (!player1.won && !cat)
         {
             //Player 2
             placedIcon = false;
@@ -156,11 +184,13 @@ void main()
                 char position = ' ';
                 do
                 {
-                    std::cout << player2Name << " choose a position (Press a key on the numpad)" << std::endl;
+                    std::cout << player2.name << " choose a position (Press a key on the numpad)" << std::endl;
 
-                    std::cout << grid[0][0] << "   " << grid[1][0] << "   " << grid[2][0] << std::endl << std::endl;
-                    std::cout << grid[0][1] << "   " << grid[1][1] << "   " << grid[2][1] << std::endl << std::endl;
-                    std::cout << grid[0][2] << "   " << grid[1][2] << "   " << grid[2][2] << std::endl;
+                    std::cout << grid[0][0].icon << " | " << grid[1][0].icon << " | " << grid[2][0].icon << std::endl;
+                    std::cout << "-   -   -" << std::endl;
+                    std::cout << grid[0][1].icon << " | " << grid[1][1].icon << " | " << grid[2][1].icon << std::endl;
+                    std::cout << "-   -   -" << std::endl;
+                    std::cout << grid[0][2].icon << " | " << grid[1][2].icon << " | " << grid[2][2].icon << std::endl;
 
                     std::cin >> position;
                 } while (position != '7' && position != '8' && position != '9' &&
@@ -171,74 +201,83 @@ void main()
                 switch (position)
                 {
                 case '9':
-                    if (grid[2][0] != player1Icon && grid[2][0] != player2Icon)
+                    if (grid[2][0].taken == false)
                     {
-                        grid[2][0] = player2Icon;
+                        grid[2][0].icon = player2.icon;
                         placedIcon = true;
+                        grid[2][0].taken = true;
                     }
                     break;
 
                 case '8':
-                    if (grid[1][0] != player1Icon && grid[1][0] != player2Icon)
+                    if (grid[1][0].taken == false)
                     {
-                        grid[1][0] = player2Icon;
+                        grid[1][0].icon = player2.icon;
                         placedIcon = true;
+                        grid[1][0].taken = true;
                     }
                     break;
 
                 case '7':
-                    if (grid[0][0] != player1Icon && grid[0][0] != player2Icon)
+                    if (grid[0][0].taken == false)
                     {
-                        grid[0][0] = player2Icon;
+                        grid[0][0].icon = player2.icon;
                         placedIcon = true;
+                        grid[0][0].taken = true;
                     }
                     break;
 
                 case '6':
-                    if (grid[2][1] != player1Icon && grid[2][1] != player2Icon)
+                    if (grid[2][1].taken == false)
                     {
-                        grid[2][1] = player2Icon;
+                        grid[2][1].icon = player2.icon;
                         placedIcon = true;
+                        grid[2][1].taken = true;
                     }
                     break;
 
                 case '5':
-                    if (grid[1][1] != player1Icon && grid[1][1] != player2Icon)
+                    if (grid[1][1].taken == false)
                     {
-                        grid[1][1] = player2Icon;
+                        grid[1][1].icon = player2.icon;
                         placedIcon = true;
+                        grid[1][1].taken = true;
                     }
                     break;
 
                 case '4':
-                    if (grid[0][1] != player1Icon && grid[0][1] != player2Icon)
+                    if (grid[0][1].taken == false)
                     {
-                        grid[0][1] = player2Icon;
+                        grid[0][1].icon = player2.icon;
                         placedIcon = true;
+                        grid[0][1].taken = true;
                     }
                     break;
 
                 case '3':
-                    if (grid[2][2] != player1Icon && grid[2][2] != player2Icon)
+                    if (grid[2][2].taken == false)
                     {
-                        grid[2][2] = player2Icon;
+                        grid[2][2].icon = player2.icon;
                         placedIcon = true;
+                        grid[2][2].taken = true;
                     }
                     break;
 
                 case '2':
-                    if (grid[1][2] != player1Icon && grid[1][2] != player2Icon)
+                    if (grid[1][2].taken == false)
                     {
-                        grid[1][2] = player2Icon;
+                        grid[1][2].icon = player2.icon;
                         placedIcon = true;
+                        grid[1][2].taken = true;
                     }
                     break;
 
                 case '1':
-                    if (grid[0][2] != player1Icon && grid[0][2] != player2Icon)
+                    if (grid[0][2].taken == false)
                     {
-                        grid[0][2] = player2Icon;
+                        grid[0][2].icon = player2.icon;
                         placedIcon = true;
+                        grid[0][2].taken = true;
                     }
                     break;
                 } //position switch
@@ -247,29 +286,38 @@ void main()
         } //If Player1 didn't win
 
           //Player 2 win conditions
-        else if (grid[0][0] == player2Icon && grid[0][1] == player2Icon && grid[0][2] == player2Icon) //Vertical Left
-            player2Won = true;
-        else if (grid[1][0] == player2Icon && grid[1][1] == player2Icon && grid[1][2] == player2Icon) //Vertical Center
-            player2Won = true;
-        else if (grid[2][0] == player2Icon && grid[2][1] == player2Icon && grid[2][2] == player2Icon) //Vertical Right
-            player2Won = true;
-        else if (grid[0][0] == player2Icon && grid[1][1] == player2Icon && grid[2][2] == player2Icon) //Diagonal rtl
-            player2Won = true;
-        else if (grid[2][0] == player2Icon && grid[1][1] == player2Icon && grid[0][2] == player2Icon) //Diagonal ltr
-            player2Won = true;
-        else if (grid[2][0] == player2Icon && grid[1][0] == player2Icon && grid[0][0] == player2Icon) //Horizontal Top
-            player2Won = true;
-        else if (grid[2][0] == player2Icon && grid[1][1] == player2Icon && grid[0][1] == player2Icon) //Horizontal Middle
-            player2Won = true;
-        else if (grid[2][0] == player2Icon && grid[1][2] == player2Icon && grid[0][2] == player2Icon) //Horizontal Bottom
-            player2Won = true;
-    } while (!player1Won && !player2Won);
+        else if (grid[0][0].icon == player2.icon && grid[0][1].icon == player2.icon && grid[0][2].icon == player2.icon) //Vertical Left
+            player2.won = true;
+        else if (grid[1][0].icon == player2.icon && grid[1][1].icon == player2.icon && grid[1][2].icon == player2.icon) //Vertical Center
+            player2.won = true;
+        else if (grid[2][0].icon == player2.icon && grid[2][1].icon == player2.icon && grid[2][2].icon == player2.icon) //Vertical Right
+            player2.won = true;
+        else if (grid[0][0].icon == player2.icon && grid[1][1].icon == player2.icon && grid[2][2].icon == player2.icon) //Diagonal rtl
+            player2.won = true;
+        else if (grid[2][0].icon == player2.icon && grid[1][1].icon == player2.icon && grid[0][2].icon == player2.icon) //Diagonal ltr
+            player2.won = true;
+        else if (grid[2][0].icon == player2.icon && grid[1][0].icon == player2.icon && grid[0][0].icon == player2.icon) //Horizontal Top
+            player2.won = true;
+        else if (grid[2][0].icon == player2.icon && grid[1][1].icon == player2.icon && grid[0][1].icon == player2.icon) //Horizontal Middle
+            player2.won = true;
+        else if (grid[2][0].icon == player2.icon && grid[1][2].icon == player2.icon && grid[0][2].icon == player2.icon) //Horizontal Bottom
+            player2.won = true;
+        else if (grid[0][0].taken == true && grid[0][1].taken == true && grid[0][2].taken == true && 
+                 grid[1][0].taken == true && grid[1][1].taken == true && grid[1][2].taken == true && 
+                 grid[2][0].taken == true && grid[2][1].taken == true && grid[2][2].taken == true)
+            cat = true;
+    } while (!player1.won && !player2.won && !cat);
 
-    if (player1Won)
-        std::cout << player1Name << " wins!";
+    if (player1.won)
+        std::cout << player1.name << " wins!";
 
-    else if (player2Won)
-        std::cout << player2Name << " wins!";
+    else if (player2.won)
+        std::cout << player2.name << " wins!";
+
+    else
+        std::cout << "Cat!";
+
+    std::cout << std::endl;
 
     system("pause");
     system("cls");
